@@ -15,6 +15,7 @@ DD_API_KEY=${api_key}
 
 # Install the agent
 DD_SITE="${site}" \
+  DD_API_KEY="$DD_API_KEY" \ # Bracket-less form to use shell interpolation rather than terraform interpolation
   DD_HOSTNAME="${hostname}" \
   DD_REPO_URL="${agent_repo_url}" \
   DD_AGENT_DIST_CHANNEL="beta" \
