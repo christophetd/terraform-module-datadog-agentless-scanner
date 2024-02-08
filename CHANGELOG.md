@@ -25,6 +25,8 @@
 
 ## Terraform 0.6.0
 
+- The `scanner_role` (string) variable was replaced by the `scanner_roles` (list) variable.
+
 ### agentless-scanner 2024011501
 
 - Clean up downloaded AWS Lambdas on startup.
