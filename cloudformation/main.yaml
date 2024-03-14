@@ -117,6 +117,11 @@ Rules:
       - Assert: !Or [!Not [!Equals [!Ref DatadogAPIKey, '']], !Not [!Equals [!Ref DatadogAPIKeySecretArn, '']]]
         AssertDescription: 'DatadogApiKey and DatadogApiKeySecretArn should not be specified together'
 
+Outputs:
+  VPCId:
+    Description: The VPC ID
+    Value: !If [CreateVPCResources, !Ref 'VPC', !Ref 'ScannerVPCId']
+
 Resources:
   ScannerAPIKeySecret:
     Type: AWS::SecretsManager::Secret
