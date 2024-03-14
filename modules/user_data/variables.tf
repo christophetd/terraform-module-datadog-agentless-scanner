@@ -23,3 +23,9 @@ variable "site" {
   default     = "datadoghq.com"
   nullable    = false
 }
+
+variable "user_data_extra" {
+  description = "Extra user data to add to the Datadog Agent configuration"
+  type        = string
+  default     = ""
+}

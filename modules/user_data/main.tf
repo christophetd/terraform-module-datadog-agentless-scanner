@@ -36,6 +36,7 @@ resource "terraform_data" "template" {
   input = templatefile("${path.module}/templates/install.sh.tftpl", {
     api_key_secret_arn = local.api_key_secret_arn
     site               = var.site,
+    user_data_extra    = var.user_data_extra,
     agent_version      = local.agent_version,
     scanner_version    = local.scanner_version,
     region             = data.aws_region.current.name,

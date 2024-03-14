@@ -80,6 +80,11 @@ Parameters:
     Description: Whether to enable the offline mode for the Datadog Agentless Scanner
     Default: "false"
 
+  ScannerUserDataExtra:
+    Type: String
+    Description: Extra user data shell script to be added to the Datadog Agentless Scanner user data
+    Default: ''
+
   ScannerAutoScalingGroupSize:
     Type: Number
     Description: The number of instances in the Auto Scaling Group
@@ -303,6 +308,9 @@ Resources:
               # Enable and start datadog-agentless-scaner
               systemctl enable datadog-agentless-scanner
               systemctl start datadog-agentless-scanner
+
+              # ---- END OF NOMINAL USER DATA ----
+              ${ScannerUserDataExtra}
             - SecretAPIKeyArn: !If [CreateDatadogApiKeySecret, !Ref 'ScannerAPIKeySecret', !Ref 'DatadogAPIKeySecretArn']
 
         BlockDeviceMappings:
