@@ -4,7 +4,9 @@
 
 ### Terraform
 
-- Location of the AWS modules moved to `./modules/aws`
+- The location of the AWS modules was moved to `./modules/aws`.
+- When using the main module, you should now pass `use_aws=true` to deploy to AWS.
+  This is still optional in 0.11.0, but will become mandatory in a future version.
 
 ## Version 0.10.0
 

@@ -1,10 +1,3 @@
-# Common variables
-variable "use_aws" {
-  description = "Create AWS resources"
-  type        = bool
-  default     = true
-}
-
 variable "api_key" {
   description = "Specifies the API keys required by the Datadog Agent to submit vulnerabilities to Datadog"
   type        = string
@@ -12,21 +5,14 @@ variable "api_key" {
   default     = null
 }
 
-variable "site" {
-  description = "By default the Agent sends its data to Datadog US site. If your organization is on another site, you must update it. See https://docs.datadoghq.com/getting_started/site/"
+variable "api_key_secret_arn" {
+  description = "ARN of the secret holding the Datadog API key. Takes precedence over api_key variable"
   type        = string
   default     = null
 }
 
-variable "tags" {
-  description = "A map of additional tags to add to the IAM role/profile created"
-  type        = map(string)
-  default     = {}
-}
-
-# AWS module variables
-variable "api_key_secret_arn" {
-  description = "ARN of the secret holding the Datadog API key. Takes precedence over api_key variable"
+variable "site" {
+  description = "By default the Agent sends its data to Datadog US site. If your organization is on another site, you must update it. See https://docs.datadoghq.com/getting_started/site/"
   type        = string
   default     = null
 }
@@ -46,4 +32,10 @@ variable "enable_ssm_vpc_endpoint" {
   description = "Whether to enable AWS SSM VPC endpoint (only applicable if enable_ssm is true)"
   type        = bool
   default     = true
+}
+
+variable "tags" {
+  description = "A map of additional tags to add to the IAM role/profile created"
+  type        = map(string)
+  default     = {}
 }

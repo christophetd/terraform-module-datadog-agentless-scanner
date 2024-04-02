@@ -42,6 +42,7 @@ module "agentless_scanner_us" {
     aws = aws.us
   }
 
+  use_aws               = true
   api_key               = var.api_key
   instance_profile_name = module.agentless_scanner_role.instance_profile.name
 }
@@ -53,6 +54,7 @@ module "agentless_scanner_eu" {
     aws = aws.eu
   }
 
+  use_aws               = true
   api_key               = var.api_key
   instance_profile_name = module.agentless_scanner_role.instance_profile.name
 }
