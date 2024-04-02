@@ -14,14 +14,14 @@ Before using this module, make sure you have the following:
 To use this module in your Terraform configuration, add the following code in your existing Terraform code:
 ```hcl
 module "scanner_role" {
-  source = "git::https://github.com/DataDog/terraform-module-datadog-agentless-scanner//modules/agentless-scanner-role"
+  source = "git::https://github.com/DataDog/terraform-module-datadog-agentless-scanner//modules/aws/agentless-scanner-role"
 
   account_roles       = [module.delegate_role.role.arn]
   api_key_secret_arns = [module.agentless_scanner.api_key_secret_arn]
 }
 
 module "delegate_role" {
-  source = "git::https://github.com/DataDog/terraform-module-datadog-agentless-scanner//modules/scanning-delegate-role"
+  source = "git::https://github.com/DataDog/terraform-module-datadog-agentless-scanner//modules/aws/scanning-delegate-role"
 
   scanner_roles = [module.scanner_role.role.arn]
 }

@@ -1,6 +1,12 @@
 # Changelog
 
-## Version TBD
+## Version 0.11.0
+
+### Terraform
+
+- Location of the AWS modules moved to `./modules/aws`
+
+## Version 0.10.0
 
 ### agentless-scanner 2024032202
 
