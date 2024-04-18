@@ -2,7 +2,7 @@
 
 This repository provides a simple and reusable Infrastructure-As-Code module for installing and configuring the Datadog Agentless Scanner.
 
-For more informations and documentation on the different options available to install the Agentless Scanner, please refer to the [Datadog documentation](https://docs.datadoghq.com/security/cloud_security_management/agentless_scanning).
+For more information on the different options available to install the Agentless Scanner, see the [Datadog documentation](https://docs.datadoghq.com/security/cloud_security_management/agentless_scanning).
 
 ## Prerequisites
 
