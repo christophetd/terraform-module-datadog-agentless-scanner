@@ -195,10 +195,17 @@ Resources:
       GroupDescription: Security group for the Datadog Agentless Scanner
       VpcId: !If [CreateVPCResources, !Ref 'VPC', !Ref 'ScannerVPCId']
       SecurityGroupEgress:
+        # DNS and NTP traffic is handled internally by AWS, so we don't need
+        # to allow it here
         - CidrIp: '0.0.0.0/0'
-          FromPort: 0
-          ToPort: 65535
-          Description: All traffic
+          FromPort: 443
+          ToPort: 443
+          Description: Allow outbound HTTPS traffic
+          IpProtocol: 'tcp'
+        - CidrIp: '0.0.0.0/0'
+          FromPort: 80
+          ToPort: 80
+          Description: Allow outbound HTTP traffic
           IpProtocol: 'tcp'
       Tags:
         - Key: Datadog
