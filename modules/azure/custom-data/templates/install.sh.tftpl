@@ -100,6 +100,14 @@ EOF
 
 chmod 600 /etc/datadog-agent/agentless-scanner.yaml
 
+# Download the JavaDB
+JAVADB_TOKEN=$(curl -s "https://ghcr.io/token?scope=repository:aquasecurity/javadb-java-db:pull" | jq -r .token)
+JAVADB_TAG=$(curl -s -H "Authorization: Bearer $JAVADB_TOKEN" https://ghcr.io/v2/aquasecurity/trivy-java-db/tags/list | jq -r .tags[0])
+JAVADB_DIGEST=$(curl -s -H "Authorization: Bearer $JAVADB_TOKEN" -H 'Accept: application/vnd.oci.image.manifest.v1+json' "https://ghcr.io/v2/aquasecurity/trivy-java-db/manifests/$JAVADB_TAG" | jq -r .layers[0].digest)
+JAVADB_TYPE=$(curl -s -H "Authorization: Bearer $JAVADB_TOKEN" -H 'Accept: application/vnd.oci.image.manifest.v1+json' "https://ghcr.io/v2/aquasecurity/trivy-java-db/manifests/$JAVADB_TAG" | jq -r .layers[0].mediaType)
+mkdir -p /tmp/trivy/java-db
+curl -s -L -H "Authorization: Bearer $JAVADB_TOKEN" -H "Accept: $JAVADB_TYPE" "https://ghcr.io/v2/aquasecurity/trivy-java-db/blobs/$JAVADB_DIGEST" | tar xzf - -C /tmp/trivy/java-db
+
 # Restart the agent
 systemctl restart datadog-agent
 
